@@ -18,7 +18,7 @@
         "<+serviceVariables.SubnetC>"
       ],
       "securityGroups": [
-        "<+serviceVariables.SecurityGroup>", 
+        "<+serviceVariables.SecurityGroup>" 
       ],
       "assignPublicIp": "ENABLED"
     }
