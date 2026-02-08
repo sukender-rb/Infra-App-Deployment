@@ -1,7 +1,7 @@
 {
   "desiredCount": 2,
   "launchType": "FARGATE",
-  "serviceName": "<+serviceVariables.containername>",
+  "serviceName": "frontend-service",
   "deploymentConfiguration": {
     "maximumPercent": 200,
     "minimumHealthyPercent": 100,
@@ -26,7 +26,7 @@
   "loadBalancers": [
     {
       "targetGroupArn": "<+serviceVariables.targetGroupArn>",
-      "containerName": "<+serviceVariables.containername>",
+      "containerName": "frontend-container",
       "containerPort": 5000
     }
   ]
