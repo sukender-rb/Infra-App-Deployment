@@ -1,26 +1,26 @@
 {
-  "family": "hpm-<+serviceVariables.containername>-td",
-  "executionRoleArn": "<+serviceVariables.executionRoleArn>",
+  "family": "frontend-td",
+  "executionRoleArn": "arn:aws:iam::064589995443:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
-  "memory": "<+serviceVariables.memory>",
-  "cpu": "<+serviceVariables.cpu>",
+  "memory": "1024",
+  "cpu": "512",
   "containerDefinitions": [
     {
-      "name": "<+serviceVariables.containername>",
+      "name": "frontend-container",
       "image": "<+artifact.image>",
       "portMappings": [
-        {"containerPort": "<+serviceVariables.containerport>"}
+        { "containerPort": 5000 }
       ],
       "logConfiguration": {
-          "logDriver": "awslogs",
-          "options": {
-              "awslogs-create-group": "true",
-              "awslogs-group": "/ecs/<+serviceVariables.containername>",
-              "awslogs-region": "<+serviceVariables.region>",
-              "awslogs-stream-prefix": "<+serviceVariables.containername>"
-          }
-      },      
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/frontend-container",
+          "awslogs-region": "eu-west-1",
+          "awslogs-stream-prefix": "frontend"
+        }
+      }
     }
   ]
 }
