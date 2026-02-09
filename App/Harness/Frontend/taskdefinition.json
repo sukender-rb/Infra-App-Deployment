@@ -1,10 +1,10 @@
 {
-  "family": "hpm-<+pipeline.variables.containername>-td",
+  "family": "hpm-frontend-td",
   "executionRoleArn": "<+pipeline.variables.executionRoleArn>",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
-  "cpu": "<+pipeline.variables.cpu.toString()>",
-  "memory": "<+pipeline.variables.memory.toString()>",
+  "cpu": "512",
+  "memory": "1024",
   "containerDefinitions": [
     {
       "name": "<+pipeline.variables.containername>",
@@ -12,7 +12,7 @@
       "essential": true,
       "portMappings": [
         {
-          "containerPort": <+pipeline.variables.containerport>,
+          "containerPort": 5000,
           "protocol": "tcp"
         }
       ],
