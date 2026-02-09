@@ -3,8 +3,8 @@
   "executionRoleArn": "<+pipeline.variables.executionRoleArn>",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
-  "cpu": "<+pipeline.variables.cpu>",
-  "memory": "<+pipeline.variables.memory>",
+  "cpu": "<+pipeline.variables.cpu.toString()>",
+  "memory": "<+pipeline.variables.memory.toString()>",
   "containerDefinitions": [
     {
       "name": "<+pipeline.variables.containername>",
