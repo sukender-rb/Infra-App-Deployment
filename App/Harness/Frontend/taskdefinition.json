@@ -1,26 +1,30 @@
 {
-  "family": "hpm-<+serviceVariables.containername>-td",
-  "executionRoleArn": "<+serviceVariables.executionRoleArn>",
+  "family": "hpm-<+pipeline.variables.containername>-td",
+  "executionRoleArn": "<+pipeline.variables.executionRoleArn>",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
-  "memory": "<+serviceVariables.memory>",
-  "cpu": "<+serviceVariables.cpu>",
+  "cpu": "<+pipeline.variables.cpu>",
+  "memory": "<+pipeline.variables.memory>",
   "containerDefinitions": [
     {
-      "name": "<+serviceVariables.containername>",
+      "name": "<+pipeline.variables.containername>",
       "image": "<+artifact.image>",
+      "essential": true,
       "portMappings": [
-        {"containerPort": "<+serviceVariables.containerport>"}
+        {
+          "containerPort": <+pipeline.variables.containerport>,
+          "protocol": "tcp"
+        }
       ],
       "logConfiguration": {
-          "logDriver": "awslogs",
-          "options": {
-              "awslogs-create-group": "true",
-              "awslogs-group": "/ecs/<+serviceVariables.containername>",
-              "awslogs-region": "<+serviceVariables.region>",
-              "awslogs-stream-prefix": "<+serviceVariables.containername>"
-          }
-      },      
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/<+pipeline.variables.containername>",
+          "awslogs-region": "<+pipeline.variables.region>",
+          "awslogs-stream-prefix": "<+pipeline.variables.containername>"
+        }
+      }
     }
   ]
 }
