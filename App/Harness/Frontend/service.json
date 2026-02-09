@@ -3,13 +3,13 @@
   "launchType": "FARGATE",
   "serviceName": "<+serviceVariables.containername>",
   "deploymentConfiguration": {
-  "maximumPercent": 200,
-  "minimumHealthyPercent": 100,
-  "deploymentCircuitBreaker": {
-    "enable": true,
-    "rollback": true
-  }
-},
+    "maximumPercent": 200,
+    "minimumHealthyPercent": 100,
+    "deploymentCircuitBreaker": {
+      "enable": true,
+      "rollback": true
+    }
+  },
   "networkConfiguration": {
     "awsvpcConfiguration": {
       "subnets": [
@@ -18,7 +18,7 @@
         "<+serviceVariables.SubnetC>"
       ],
       "securityGroups": [
-        "<+serviceVariables.SecurityGroup>", 
+        "<+serviceVariables.SecurityGroup>"
       ],
       "assignPublicIp": "ENABLED"
     }
@@ -31,3 +31,4 @@
     }
   ]
 }
+
