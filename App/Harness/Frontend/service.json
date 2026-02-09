@@ -1,15 +1,15 @@
 {
-  "desiredCount": 2,
+  "desiredCount": "<+serviceVariables.DesiredCount>",
   "launchType": "FARGATE",
-  "serviceName": "frontend-service",
+  "serviceName": "<+serviceVariables.containername>",
   "deploymentConfiguration": {
-    "maximumPercent": 200,
-    "minimumHealthyPercent": 100,
-    "deploymentCircuitBreaker": {
-      "enable": true,
-      "rollback": true
-    }
-  },
+  "maximumPercent": 200,
+  "minimumHealthyPercent": 100,
+  "deploymentCircuitBreaker": {
+    "enable": true,
+    "rollback": true
+  }
+},
   "networkConfiguration": {
     "awsvpcConfiguration": {
       "subnets": [
@@ -18,7 +18,7 @@
         "<+serviceVariables.SubnetC>"
       ],
       "securityGroups": [
-        "<+serviceVariables.SecurityGroup>"
+        "<+serviceVariables.SecurityGroup>", 
       ],
       "assignPublicIp": "ENABLED"
     }
@@ -26,8 +26,8 @@
   "loadBalancers": [
     {
       "targetGroupArn": "<+serviceVariables.targetGroupArn>",
-      "containerName": "frontend-container",
-      "containerPort": 5000
+      "containerName": "<+serviceVariables.containername>",
+      "containerPort": "<+serviceVariables.containerport>"
     }
   ]
 }
